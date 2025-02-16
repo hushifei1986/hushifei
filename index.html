@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 20px 0;
+            width: 100%;
+            display: none;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f5f5f5;
+        }
+
+       .section-title {
+            background-color: #e0e0e0;
+            font-weight: bold;
+        }
+
+        button {
+            margin: 5px;
+            padding: 8px 16px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+
+        button.active {
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <button onclick="showTable(0)">日榜战法</button>
+    <button onclick="showTable(1)">情绪周期与策略</button>
+
+    <!--日榜战法 -->
+    <table id="table0">
+        <tr>
+            <th colspan="3" class="section-title">日榜战法</th>
+        </tr>
+        <tr>
+            <th>周期</th>
+            <th>信号</th>
+            <th>典型案例</th>
+        </tr>
+        <tr>
+            <td>阳初</td>
+            <td>上一轮退潮力量企稳，新一轮攻击力量持续向上</td>
+            <td>
+                <button onclick="highlightRow(this)">查看详情</button>
+            </td>
+        </tr>
+        <tr>
+            <td>阳升</td>
+            <td>日日新高日日持，去弱留强</td>
+            <td>
+                <button onclick="highlightRow(this)">查看详情</button>
+            </td>
+        </tr>
+        <tr>
+            <td>余温</td>
+            <td>龙头不A杀，使用低位隔日套利模式</td>
+            <td>
+                <button onclick="highlightRow(this)">查看详情</button>
+            </td>
+        </tr>
+        <tr>
+            <td>下降</td>
+            <td>龙头空间力量下杀，空仓休息，等阳初的到来</td>
+            <td>
+                <button onclick="highlightRow(this)">查看详情</button>
+            </td>
+        </tr>
+    </table>
+
+    <!-- 情绪周期阶段表（合并后的表格） -->
+    <table id="table1">
+        <tr>
+            <th colspan="3" class="section-title">情绪周期阶段与节点策略</th>
+        </tr>
+        <tr>
+            <th>阶段</th>
+            <th>特征</th>
+            <th>策略</th>
+        </tr>
+        <tr>
+            <td>冰点期</td>
+            <td>连板高度2-3板，龙头补跌，成交量低迷</td>
+            <td>空仓/轻仓试错低位首板</td>
+        </tr>
+        <tr>
+            <td>启动期</td>
+            <td>出现放量二板，主线初步显现</td>
+            <td>试错潜在龙头（如二板放量个股）</td>
+        </tr>
+        <tr>
+            <td>发酵期</td>
+            <td>龙头5连板+，跟风效应增强</td>
+            <td>加仓龙头或布局补涨股（次新/低位）</td>
+        </tr>
+        <tr>
+            <td>高潮期</td>
+            <td>龙头缩量加速，跟风股筹码松动</td>
+            <td>持有龙头，回避跟风接力</td>
+        </tr>
+        <tr>
+            <td>高位震荡</td>
+            <td>龙头没A杀，低位继续补涨</td>
+            <td>确定中大周期，3层仓买分歧延续</td>
+        </tr>
+        <tr>
+            <td>退潮期</td>
+            <td>龙头跌停，天地板频现</td>
+            <td>清仓观望，关注逆周期题材（转债/独立逻辑）</td>
+        </tr>
+
+        <!-- 原第三个表格（情绪节点识别方法）的内容 -->
+        <tr>
+            <th colspan="2" class="section-title">情绪节点识别方法</th>
+        </tr>
+        <tr>
+            <th>维度</th>
+            <th>关键指标</th>
+            <th>备注</th>
+        </tr>
+        <tr>
+            <td>龙头信号</td>
+            <td>空间龙头断板（南京化纤天地板）/反包（正丹股份龙回头）</td>
+            <td>空间龙不新高</td>
+        </tr>
+        <tr>
+            <td>量化指标</td>
+            <td>BR=26日最高价差和/最低价差和×100，冰点BR＜30，高潮BR＞150</td>
+        </tr>
+        <tr>
+            <td>市场行为</td>
+            <td>涨停家数（冰点＜20，高潮＞100），连板晋级率＜30%</td>
+        </tr>
+
+        <!-- 原第四个表格（实战策略案例）的内容 -->
+        <tr>
+            <th colspan="3" class="section-title">实战策略案例</th>
+        </tr>
+        <tr>
+            <th>节点类型</th>
+            <th>典型案例</th>
+            <th>操作策略</th>
+        </tr>
+        <tr>
+            <td>冰点转启动</td>
+            <td>五矿资本二板放量（2025.1）</td>
+            <td>试错放量二板（科森科技）+首板共振题材（军工）</td>
+        </tr>
+        <tr>
+            <td>高潮转退潮</td>
+            <td>南京化纤天地板→金瑞矿业失败</td>
+            <td>止盈龙头，回避4-5板中位股</td>
+        </tr>
+        <tr>
+            <td>退潮期修复</td>
+            <td>正丹股份龙回头次日闷杀</td>
+            <td>轻仓试错低位独立逻辑（正虹科技猪肉）</td>
+        </tr>
+
+        <!-- 原第五个表格（注意事项）的内容 -->
+        <tr>
+            <th colspan="2" class="section-title">注意事项</th>
+        </tr>
+        <tr>
+            <td>周期嵌套</td>
+            <td>小周期(3-5天)受中级周期(1-2月)制约，需结合指数环境判断</td>
+        </tr>
+        <tr>
+            <td>风格切换</td>
+            <td>退潮期资金偏好高低切（连板→趋势股）</td>
+        </tr>
+        <tr>
+            <td>核心逻辑</td>
+            <td>冰点试错→发酵加仓→高潮离场→退潮空仓</td>
+        </tr>
+    </table>     
+  <script>
+        function showTable(index) {
+            const tables = document.querySelectorAll('table');
+            const buttons = document.querySelectorAll('button');
+
+            tables.forEach(table => {
+                table.style.display = 'none';
+            });
+
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            const targetTable = document.getElementById(`table${index}`);
+            targetTable.style.display = 'table';
+
+            const targetButton = buttons[index];
+            targetButton.classList.add('active');
+        }
+
+        function highlightRow(button) {
+            const table = button.closest('table');
+            if (table.id === 'table0') {
+                const row = button.closest('tr');
+                const cells = row.querySelectorAll('td, th');
+                cells.forEach(cell => {
+                    cell.style.backgroundColor ='red';
+                });
+            }
+        }
+    </script>
+</body>
+
+</html>
